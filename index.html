@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.25">
+
+    <title>Discrete Mathematics-Cryptography-Project-2023</title>
+
+    <link rel="icon" href="image/home-icon-logo-1.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+
+
+
+    <!-- <div></div> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <!-- <div></div> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&family=Lato:wght@100;300;400;700;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: Roboto, Arial;
+        }
+
+        button {
+            /* font-weight: bold; */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .encrypt,
+        .decrypt {
+            display: flex;
+            height: 240px;
+            margin-top: 30px;
+        }
+
+        .input-plain-text,
+        .input-cipher-text {
+            /* background-color: lightblue; */
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 10px;
+            padding-left: 20px;
+            /* padding-top: 20px; */
+            display: flex;
+            /* align-items: center; */
+        }
+
+        .encrypt-text,
+        .decrypt-text {
+            /* background-color: lightpink; */
+            display: flex;
+            flex: 0.75;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 0;
+        }
+
+        .output-plain-text,
+        .output-cipher-text {
+            /* background-color: lightblue; */
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 10px;
+            padding-right: 20px;
+            /* padding-top: 20px; */
+        }
+
+        .css-plainText-input,
+        .css-plainText-output,
+        .css-cipherText-input,
+        .css-cipherText-output {
+            width: 100%;
+            border-radius: 8px;
+            border-color: black;
+            font-size: 16px;
+            padding: 6px;
+
+        }
+
+
+        .input-box {
+            display: flex;
+            flex: 1;
+        }
+
+        .Text-title {
+            font-family: Quicksand, Arial;
+            /* background-color: rgb(210, 210, 210); */
+            background-color: rgb(255, 226, 111);
+            height: 28px;
+            border-style: solid;
+            border-width: 1px;
+            margin-bottom: 2px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            padding-top: 4px;
+            padding-left: 6px;
+
+        }
+
+        .css-key-input-text {
+            width: 180px;
+            /* height: 22px; */
+            margin-bottom: 2px;
+            border-color: black;
+            border-width: 1px;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 4px;
+
+        }
+
+        .css-convert-button {
+            width: 190px;
+            height: 34px;
+            background-color: white;
+            border-width: 1px;
+            /* border-color: rgb(200, 200, 200); */
+            border-style: solid;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            cursor: pointer;
+            position: relative;
+
+            /* background-color: black; */
+            box-shadow: 0 0 0 transparent;
+            transition: all 0.2s;
+
+        }
+
+        .css-convert-button:hover {
+            transition: background-color 0.3s;
+            transition: border-color 0.15s;
+            background-color: black;
+            border-color: white;
+            /* background-color: rgb(220, 220, 220); */
+            /* width: 142px; */
+            /* height: 30px; */
+        }
+
+        .css-convert-button:active {
+            transition: background-color 0.2s;
+            background-color: white;
+        }
+
+        .css-convert-button:hover .encryption {
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .css-convert-button:active .encryption {
+            transition: all 0.3s;
+            color: black;
+        }
+
+        .encryption {
+            flex: 1;
+            /* padding-right: 28px; */
+            font-family: Quicksand, Arial;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .Text-title:hover .Text {
+            transition: all 0.2s;
+            /* color: white; */
+        }
+
+        .Text-title:hover {
+            transition: background-color 0.2s;
+            /* background-color: black; */
+            background-color: rgb(255, 204, 2);
+            /* background-color: rgb(255, 214, 49); */
+        }
+
+        .header {
+            display: flex;
+        }
+
+        .header-left {
+            flex: 1;
+            /* width: 240px; */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: lightblue; */
+        }
+
+        .header-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            /* background-color: lightpink; */
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+            /* align-items: center; */
+        }
+
+        .daiict-logo {
+            /* padding-left: 50px; */
+            width: 40%;
+            border-radius: 10px;
+        }
+
+        .header-right-text {
+            font-family: Quicksand, Arial;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .header-right-text-1 {
+            font-family: Quicksand, Arial;
+            font-size: 15px;
+            font-weight: 400;
+            color: rgb(100, 100, 100);
+            display: flex;
+        }
+
+        .email-logo {
+            width: 20px;
+            opacity: 0.5;
+            padding-right: 4px;
+        }
+
+        .photo-content {
+            margin-top: 40px;
+            margin-bottom: 40px;
+            /* background-color: lightpink; */
+        }
+
+        .home-page {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .details {
+            background-color: rgba(240, 240, 240, 0.3);
+            position: absolute;
+
+            top: 42%;
+            top: 28%;
+
+            /* top: 300px; */
+            /* left: 26.2%; */
+            left: 10%;
+
+
+            /* left: 400px; */
+            width: 42%;
+            /* width: 500px; */
+            height: 31.6%;
+            /* height: 220px; */
+            border-radius: 10px;
+            padding: 4px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+            display: flex;
+            flex-direction: column;
+            /* margin-top: 10px; */
+        }
+
+        /* .details:hover {
+            width: 540px;
+        } */
+
+        .sidebar {
+            /* background-image: url('image/wallpaper/sidebar-image.jpg'); */
+            /* background-image: url('image/wallpaper/best-wall-5.jpg'); */
+            background-image: url('image/wallpaper/w3-1.jpg');
+            /* background-image: url('image/wallpaper/w2.jpg'); */
+            background-repeat: no-repeat;
+            /* background-attachment: fixed; */
+            background-size: 100%;
+            /* background-position:0cap; */
+
+
+
+
+            /* width: 280px; */
+            width: 18.5%;
+            position: fixed;
+            /* background-color:ivory; */
+
+            /* background-color: rgb(247, 247, 255); */
+            background-color: black;
+
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding-top: 24px;
+            border-right: 1px solid rgb(159, 159, 159);
+            /* display: flex;
+            flex-direction: column; */
+            /* align-items: center; */
+            z-index: 100;
+            overflow: auto;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* ::-webkit-scrollbar-track {
+            border: 2px solid pink;
+            border-radius: 8px;
+        } */
+
+        /* ::-webkit-scrollbar-thumb {
+            background-color: rgb(200, 200, 200);
+            border-radius: 8px;
+        } */
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgb(196, 196, 196);
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+        .body-of-project {
+            padding-left: 19.4%;
+        }
+
+        .intro-1 {
+            /* background-color: lightpink; */
+            font-family: Quicksand, Arial;
+            font-size: 14px;
+            letter-spacing: 3px;
+            color: rgb(80, 80, 80);
+            padding-top: 6px;
+        }
+
+        .intro-2 {
+            font-family: Quicksand, Arial;
+            font-size: 40px;
+            font-weight: 700;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .intro-3 {
+            font-family: Quicksand, Arial;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: rgb(40, 40, 40);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        .intro-4 {
+            margin-top: 8.8%;
+            /* margin-top: 60px; */
+
+            margin-bottom: 6%;
+            /* margin-bottom: 6px; */
+            font-family: Quicksand, Arial;
+            font-size: 20px;
+            font-weight: 700;
+            color: wheat;
+        }
+
+        .Headline-of-DES {
+            /* background-color: rgba(255, 199, 199, 0.6); */
+            /* background-color: tomato; */
+            /* background-color: rgb(169, 255, 255); */
+            /* background-color: azure; */
+            /* background-color: rgb(219, 255, 219); */
+            /* background-color: bisque; */
+            /* background-color: blanchedalmond; */
+            /* background-color: cornsilk; */
+            /* background-color:orange; */
+            width: 100%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-family: Quicksand, Arial;
+            font-size: 32px;
+            border: 1px solid rgb(190, 190, 190);
+            font-weight: 700;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .Headline-of-DES:hover {
+            background-color: gainsboro;
+        }
+
+        .Headline-of-DES:active {
+            background-color: white;
+        }
+
+        .converter {
+            /* background-color: rgb(250, 250, 250); */
+            border: 2px solid black;
+            margin-top: 28px;
+            /* margin-bottom: 72px; */
+            padding-bottom: 28px;
+            border-radius: 10px;
+            /* background-color: wheat; */
+            /* background-color:antiquewhite; */
+            /* background-color: tomato; */
+            /* background-color: aquamarine; */
+
+            background-color: rgb(255, 245, 204);
+
+            /* background-color: rgb(230, 243, 255); */
+            /* background-color: rgb(226, 255, 255); */
+            /**/
+            /* background-color: bisque; */
+
+            /* background-image: url(image/wallpaper/w9.jpg); */
+
+            background-image: url(image/wallpaper/w10.jpg);
+            /* background-image: url(image/wallpaper/s2.jpg); */
+
+        }
+
+        .converter:hover {
+            /* background-color: rgb(230, 243, 255); */
+            /* background-color: rgb(226, 255, 255); */
+            background-color: rgb(255, 241, 184);
+
+
+        }
+
+        .intro,
+        .intro-algorithm,
+        .intro-algorithm-1,
+        .intro-back-box-algorithm,
+        .intro-back-box-algorithm-1,
+        .c-plus-plus-code-div {
+            font-family: Quicksand, Arial;
+            /* background-color: rgba(200, 200, 200, 0.6); */
+            background-color: rgba(0, 0, 0, 0.8);
+
+            margin-bottom: 90px;
+            margin-top: 60px;
+            width: 500px;
+            padding-left: 20px;
+            padding-top: 14px;
+            padding-bottom: 14px;
+            padding-right: 18px;
+            line-height: 30px;
+            /* color: black; */
+            color: wheat;
+            border: 1px solid black;
+            border-radius: 9px;
+            font-size: 18px;
+            font-weight: 500;
+            transition: all 0.2s;
+            /* font-weight: 500; */
+        }
+
+        .intro-algorithm,
+        .intro-algorithm-1 {
+            margin: 0;
+        }
+
+        .intro-algorithm-1 {
+            position: absolute;
+            background-color: transparent;
+            border: none;
+            /* padding: 0; */
+        }
+
+        .intro-back-box-algorithm,
+        .intro-back-box-algorithm-1 {
+            margin: 0;
+            color: black;
+            background-color: rgb(240, 240, 240);
+        }
+
+        .intro-back-box-algorithm-1 {
+            margin: 24px;
+            background-color: rgb(240, 240, 240);
+
+        }
+
+        .intro-algorithm:hover,
+        .intro-algorithm-1:hover {
+            box-shadow: 6px 6px 6px rgb(255, 255, 255, 0.6);
+            /* box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.7); */
+        }
+
+        .intro-back-box-algorithm:hover,
+        .intro-back-box-algorithm-1:hover {
+            box-shadow: 6px 6px 6px rgba(240, 240, 240, 0.6);
+
+        }
+
+        .menu {
+            /* background-color: lightblue; */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-icon,
+        .menu-icon-1,
+        .menu-icon-1-1 {
+            background-color: rgba(242, 242, 242, 0.85);
+            /* background-color:rgba(176, 255, 255, 0.65); */
+            font-weight: 500;
+            /* color: white; */
+            /* color:rgb(0, 255, 255); */
+            color: black;
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            border: 1px solid gray;
+            border-radius: 10px;
+            height: 36px;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-left: 10px;
+            padding-right: 20px;
+            font-family: Quicksand, Arial;
+            transition: all 0.15s;
+        }
+
+        .menu-icon-1,
+        .menu-icon-1-1 {
+            /* right: 0; */
+            width: 87.5%;
+
+            box-shadow: 0 0 0 transparent;
+
+            margin-top: 7px;
+            margin-bottom: 7px;
+
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 20px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.8);
+
+        }
+
+        .menu-icon-1-1 {
+            /* width:87.5%; */
+            margin-top: 0;
+            background-color: rgba(242, 242, 242, 0.85);
+            color: black;
+            font-weight: 500;
+            font-size: 16.8px;
+        }
+
+        .menu-icon-1:hover,
+        .menu-icon-1-1:hover {
+            color: black;
+            /* background-color: white; */
+            background-color: rgb(240, 240, 240);
+            transition: all 0.15s;
+
+        }
+
+        .menu-icon:hover {
+            background-color: rgb(250, 250, 250);
+            color: black;
+        }
+
+        .software {
+            font-weight: 500;
+            color: deepskyblue;
+        }
+
+        .Headline-of-DES:hover .software {
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .algorothm {
+            background-color: lightblue;
+        }
+
+        .head-text-algorithm,
+        .head-black-text-algorithm {
+            color: white;
+            font-weight: 600;
+            font-size: 21px;
+            display: flex;
+        }
+
+        .head-black-text-algorithm {
+            color: black;
+            font-weight: 700;
+        }
+
+        .number-symbol,
+        .number-black-symbol {
+            padding-right: 10px;
+            font-weight: 100;
+            font-size: 38px;
+        }
+
+        .number-black-symbol {
+            font-size: 40.5px;
+            padding-right: 7.5px;
+
+        }
+
+        .head-text-body-algorithm {
+            padding-left: 40px;
+            padding-right: 20px;
+            padding-top: 10px;
+        }
+
+        .head-text-body-algorithm-1 {
+            display: flex;
+        }
+
+        .head-text-body-algorithm-2 {
+            padding-left: 6px;
+        }
+
+        .background-box-white,
+        .background-box-white-1,
+        .background-box-black,
+        .C-plus-plus-Code {
+            /* background-color: rgb(220, 220, 220); */
+            background-color: rgb(230, 230, 230);
+            padding: 24px;
+            border: 1px soldi white;
+            border-radius: 12px;
+            margin-top: 60px;
+            /* margin-bottom: 60px; */
+            display: flex;
+
+            transition: 0.15s;
+
+        }
+
+        .background-box-white {
+            /* background-image: url('image/wallpaper/w11.jpg'); */
+            /* background-attachment: fixed; */
+            /* background-repeat: no-repeat; */
+            /* background-size: cover; */
+            background-image: url(image/wallpaper/s7.jpg);
+            justify-content: right;
+
+        }
+
+        .background-box-white-1 {
+            position: relative;
+        }
+
+        .background-box-black {
+            /* background-image: url('image/wallpaper/gnw-1.jpg'); */
+            /* background-attachment: fixed; */
+            /* background-repeat: no-repeat; */
+            /* background-size: cover; */
+            background-color: rgba(0, 0, 0, 0.8);
+            background-image: url(image/wallpaper/s2.jpg);
+
+            /* justify-content: right; */
+        }
+
+        .background-box-black:hover {
+            /* background-color: rgba(22, 22, 22, 0.8); */
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+
+        .background-box-white:hover,
+        .background-box-white-1:hover {
+            background-color: rgb(200, 200, 200);
+            /* background-color: red; */
+        }
+
+        .subtopic {
+            font-weight: 700;
+        }
+
+        .backgroung-image-1 {
+            padding: 0;
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 8px;
+            opacity: 0.98;
+        }
+
+        .backgroung-image-1:hover {
+            opacity: 1;
+        }
+
+        .div-flow-chart {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            /* margin-bottom: 80px; */
+        }
+
+        .div-div-flow-chart {
+            background-color: rgb(100, 100, 100);
+            /* background-color:rgb(180, 236, 255); */
+            /* background-color: rgb(125, 192, 250); */
+
+            /* background-color: rgb(183, 221, 255); */
+            background-color: rgb(118, 191, 255);
+            /* background-image: linear-gradient(120deg, #3e32a8, #e310c7); */
+            background-image: linear-gradient(120deg, #4a3ccb, #74bcff);
+            /* background-color: gray; */
+
+            display: flex;
+            padding: 12px;
+            border-radius: 10px;
+            transition: all 0.15s;
+            border: 1px solid black
+        }
+
+        .div-div-flow-chart:hover {
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+            background-color: rgb(31, 151, 255);
+
+        }
+
+        .flow-chart {
+            width: 600px;
+            height: 1000px;
+            border-radius: 10px;
+        }
+
+        /* .professor-id-11 {
+            background-color: lightblue;
+            border: 1px solid black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .professor-id-11-1 {
+            background-color: lightpink;
+            /* padding: 20px; 
+            margin: 40px;
+        } */
+
+
+        .menu-body {
+            /* background-color: rgb(207, 207, 207); */
+            background-color: transparent;
+            font-family: Quicksand, Arial;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 24px;
+            padding-right: 24px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 500;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            width: 500px;
+            transition: all 0.2s;
+        }
+
+        .menu-body:hover {
+            /* background-color: rgba(220, 220, 220, 0.8); */
+            color: rgba(0, 0, 0, 0.8);
+            background-color: white;
+            box-shadow: 4px 4px 4px rgba(240, 240, 240, 0.6);
+            border: 1px solid black;
+
+        }
+
+        .student-id {
+            font-family: Lato, Arial;
+            letter-spacing: 1.2px;
+        }
+
+        .group-members-background,
+        .professor-id-background {
+            margin-top: 50px;
+
+            padding: 21px;
+            color: white;
+
+            /* background-image: url('image/wallpaper/w5.jpg'); */
+            background-image: url('image/wallpaper/ganesha.jpg');
+            /* background-repeat: no-repeat; */
+            background-size: 100%;
+
+            border-radius: 12px;
+        }
+
+        .group-members-background {
+            padding-bottom: 10px;
+
+            /* padding-top: 0px; */
+            /* padding-bottom: 0px; */
+        }
+
+        .professor-id-background {
+            background-image: url('image/wallpaper/sidebar-image-1.jpg');
+        }
+
+        .cpp-link-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: fit-content;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .cpp-link-button:hover {
+            color: white;
+            background-color: rgba(6, 6, 6, 0.9);
+        }
+
+        .cpp-link-button:active {
+            background-color: white;
+            color: black;
+        }
+
+        .scroll-top {
+            background-color: rgb(255, 249, 241);
+            border-radius: 40px;
+            color: white;
+            position: fixed;
+            right: 12px;
+            bottom: 14px;
+            z-index: 1000;
+
+            width: 40px;
+            height: 40px;
+            display: flex;
+            cursor: pointer;
+        }
+
+        .up-arrow-logo {
+            width: 44px;
+            border-radius: 10px;
+        }
+
+        .software-image {
+            align-items: center;
+            object-fit: cover;
+            padding: 0;
+            height: 600px;
+        }
+
+        .feedback-background-box-white-1 {
+            margin-top: 50px;
+        }
+
+
+
+
+
+
+        /* .Headline-of-DES {
+            border: 1px solid transparent;
+        } */
+
+        .cpp-code-link {
+            position: absolute;
+        }
+
+        .feedback {
+            margin-top: 15px;
+        }
+
+        .feedback-review {
+            display: flex;
+            justify-content: center;
+            /* margin-bottom:10px; */
+            /* background-color: lightblue; */
+        }
+
+        .heart-button-feedback,
+        .thumb-button-feedback {
+            margin-top: 36px;
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-bottom: 120px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-button-feedback {
+            font-family: Quicksand, Arial;
+            margin-top: 20px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .creater-of-website {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Quicksand, Lato, Inter, Arial;
+            font-size: 16px;
+            color: gray;
+            font-weight: 500;
+        }
+
+        .website-owner {
+            border: 1px solid white;
+            border-radius: 4px;
+            padding-left: 4px;
+            padding-right: 4px;
+            padding-bottom: 2px;
+
+
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: 10px;
+        }
+
+        .menu-body:hover .website-owner {
+            border-color: black;
+        }
+
+
+
+        .A1-introduction-to-DES,
+        .A1-1-process,
+        .A2-encryption-decryption-software,
+        .A2-1-C-plus-plus-Code,
+        .A3-flow-chart,
+        .A4-encryption-algorithm,
+        .A5-decryption-algorithm,
+        .A6-limitation,
+        .A6-1-startup,
+        .A6-2-video-latex,
+        .A7-professor-id,
+        .A8-group-members-id,
+        .A9-feedback {
+            margin-bottom: 90px;
+        }
+
+        .A9-feedback {
+            padding-bottom: 56px;
+        }
+
+        .A6-2-video-latex {
+            margin-bottom: 110px;
+        }
+
+
+        body {
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 8vw;
+            place-content: center;
+            margin: 0;
+            height: 100vh;
+            background: #ecf0f4;
+
+        }
+
+        button {
+            --i: var(--light, 0);
+            --not-i: calc(1 - var(--i));
+            --j: var(--press, 0);
+            --not-j: calc(1 - var(--j));
+            z-index: var(--i);
+            border: none;
+            width: 2em;
+            height: 2em;
+            border-radius: 15%;
+            transform: scale(calc(1 - var(--j) * 0.02));
+            box-shadow: calc(var(--not-j) *-0.25em) calc(var(--not-j) *-0.25em) 0.25em rgba(252, 252, 252, var(--not-j)), calc(var(--not-j) *0.25em) calc(var(--not-j) *0.25em) 0.25em rgba(210, 218, 230, var(--not-j)), inset calc(var(--j) *0.25em) calc(var(--j) *0.25em) 0.25em rgba(210, 218, 230, var(--j)), inset calc(var(--j) *-0.25em) calc(var(--j) *-0.25em) 0.25em rgba(252, 252, 252, var(--j));
+            background: #e8e8e8;
+            font-size: 2.5em;
+            transition: box-shadow 0.3s, transform 0.3s cubic-bezier(0.2, 4, 1, 3);
+            cursor: pointer;
+        }
+
+        button::after {
+            filter: Contrast(0) Sepia(var(--i)) Hue-Rotate(calc(var(--hue) - 50deg)) Saturate(5) Opacity(calc(var(--i) + 0.21 * var(--not-i))) Drop-Shadow(1px 1px hsla(0, 0%, 100%, var(--not-i)));
+            transition: filter 0.3s;
+            content: attr(data-ico);
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+        button:hover,
+        button:focus {
+            --light: 1;
+        }
+
+        button:active {
+            --press: 1;
+        }
+
+        #preloader {
+            background: black url(image/gif/giphy.gif) no-repeat center center;
+            background-size: 12%;
+            height: 100vh;
+            width: 100%;
+
+            margin-left: 1.75%;
+            /* margin-left: 26px; */
+
+            border: 20px solid white;
+            border-radius: 10px;
+
+            border-top-width: 0;
+
+
+            position: fixed;
+            z-index: 99999;
+            transition: 0.2s;
+        }
+
+        .cpp-latex-button,
+        .cpp-video-button,
+        .cpp-ppt-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 9%;
+            margin-bottom: 4%;
+            /* margin-left:6%; */
+            /* margin-right:6%; */
+
+            /* padding-left: 0; */
+            /* padding-right: 0; */
+            /* padding-bottom: 0; */
+            /* padding-top: 0; */
+            padding-top: 2%;
+            padding-left: 0;
+            padding-right: 0;
+            height: 100%;
+            width: 260px;
+
+            /* position: absolute; */
+        }
+
+        .cpp-latex-button,
+        .cpp-ppt-button {
+            margin-left: 2%;
+            margin-right: 2%;
+            /* margin-right: 6%; */
+        }
+
+        .cpp-video-button {
+            margin-left: 2%;
+            margin-right: 2%;
+            /* margin-right: 6%; */
+            /* margin-left: 8%; */
+        }
+
+        .latex-box,
+        .video-box,
+        .ppt-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
+            width: 390px;
+        }
+
+        .latex-1 {
+            width: 60%;
+            border-radius: 10px;
+        }
+
+        .video-des-1 {
+            border-radius: 10px;
+            width: 60%;
+        }
+
+        .ppt-1 {
+            border-radius: 10px;
+            width: 60%;
+        }
+
+        .intro-video-letex-file {
+            margin-top: 1.5%;
+        }
+
+        /* @media (max-width:300px){
+            .details{
+                top:100%;
+            }
+
+            .body-of-project{
+                padding-left: 0;
+            }
+        } */
+        @media screen and (max-width:1400px) {
+            .menu-icon-1-1 {
+                margin-top: 4px;
+                margin-bottom: 4px;
+            }
+
+            .menu-icon-1 {
+                margin-top: 16px;
+                margin-bottom: 2px;
+            }
+
+            .header-left {
+                margin-bottom: 10px;
+            }
+
+            /* .sidebar {
+                padding-top: 0;
+            } */
+        }
+
+        @media screen and (max-width:1300px) {
+            .menu-icon {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+
+            .menu-icon-1 {
+                margin-top: 20px;
+                margin-bottom: 4px;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .sidebar {
+                display: none;
+            }
+
+            .body-of-project {
+                padding-left: 10px;
+            }
+
+            .group-members-background {
+                padding-top: 4px;
+                padding-bottom: 4px;
+            }
+
+            .menu-body {
+                margin-top: 8px;
+                margin-bottom: 8px;
+            }
+
+            /* .details {
+                left: 20px;
+                top: 200px;
+                width: 46%;
+            } */
+        }
+
+        @media (max-width: 1200px) {
+            .details {
+                left: 4%;
+
+
+                /* left: 20px; */
+
+
+                top: 26%;
+
+
+                /* top: 200px; */
+
+
+                width: 46%;
+            }
+        }
+
+        @media (min-width: 2300px) and (max-width: 3072px) {
+            .details {
+                left: 10%;
+                top: 26%;
+                width: 30%;
+                height: 20%;
+            }
+        }
+
+        @media (max-width: 4608px) and (min-width: 3073px) {
+            .details {
+                left: 10%;
+                top: 30%;
+                width: 30%;
+                height: 20%;
+            }
+        }
+
+        @media (min-width: 4601px) and (max-width: 6144px) {
+            .details {
+                left: 10%;
+                top: 26%;
+                width: 30%;
+            }
+        }
+
+        @media (max-width:500px) {
+            .details {
+                left: 4%;
+                top: 14%;
+                width: 46%;
+            }
+
+            .new-header-left {
+                background: url(image/daiict-logo-without-background.png) no-repeat center center;
+                width: 10%;
+                padding-top: 14%;
+                padding-left: 4%;
+                /* padding-right: 4%; */
+                /* border : 1px solid white */
+                /* background-color: #4a3ccb; */
+                /* width:300px; */
+            }
+
+            .header-right {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width:1200px) {
+            .new-header-left {
+                background-image: url(image/daiict-logo-without-background.png);
+                background-repeat: no-repeat;
+                background-size: 64%;
+                background-position: center;
+                /* no-repeat center center; */
+                width: 10%;
+                padding-top: 14%;
+                padding-left: 4%;
+                /* padding-right: 4%; */
+                /* border : 1px solid white */
+                /* background-color: #4a3ccb; */
+                /* width:300px; */
+            }
+
+            .header-right {
+                margin-top: 0;
+            }
+
+            .Headline-of-DES {
+                border: none;
+            }
+        }
+    </style>
+</head>
+
+<body id="top" onload="myFunction();" style=" font-size: 16px;
+                display:flex;
+                /* background-color:ivory; */
+                padding-right:0.7%;
+                background-color:whitesmoke;
+                ">
+
+    <div id="preloader"></div>
+
+
+
+    <div class="scroll-top" onclick="scrollToDiv('top')">
+        <img class="up-arrow-logo" src="image/up-arrow.png">
+        <!-- scroll -->
+
+
+
+        <!--*********************************88-->
+    </div>
+    <div class="sidebar">
+        <div class="header-left">
+            <img src="image/daiict-logo.png" class="daiict-logo">
+        </div>
+        <div class="menu">
+            <button id="professor-id" class="menu-icon-1" onclick="scrollToDiv('top')">
+                <div style="justify-content: left; width:fit-content">
+                    HOME
+                </div>
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('DES-Cryptography')">
+                DES Algorithm
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('process-id')">
+                Software instructions
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('Encryption-Decryption')">
+                Software
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('c++code')">
+                C++ code (DES Alog)
+            </button>
+            <!-- <button id="Group-members-id" class="menu-icon-1" onclick="scrollToDiv('Group-members-id-1')">
+                Group - Members
+            </button> -->
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('Flow-chart-1')">
+                Flow-chart
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('Encryption-Algorithm-1')">
+                Encryption Algo.
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('Decryption-Algorithm-1')">
+                Decryption Algo.
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('limitations-id')">
+                Limitation
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('idea-to-startup-id')">
+                Idea to startup
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('video-latex')">
+                Files
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('professor-id-1')">
+                Professors
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('Group-members-id-1')">
+                Group Members
+            </button>
+            <button id="Group-members-id" class="menu-icon-1-1" onclick="scrollToDiv('feedback-id-1')">
+                Feedback
+            </button>
+        </div>
+    </div>
+
+    <div class="body-of-project">
+        <div class="header">
+            <div class="new-header-left">
+                <!-- <img src="image/daiict-logo.png" class="daiict-logo"> -->
+            </div>
+            <!-- <div class="header-left">
+                <img src="image/daiict-logo.png" class="daiict-logo">
+            </div> -->
+            <div class="header-right">
+                <div class="header-right-text">
+                    Dhirubhai Ambani Institute of Information and Communication Technology
+                </div>
+                <div class="header-right-text-1">
+                    Daiict college, Reliance Cross Rd, Gandhinagar, Gujarat 382007
+                </div>
+                <div class="header-right-text-1">
+                    <div>
+                        <img src="image/email.png" class="email-logo">
+                    </div>
+
+                    <div>
+                        &#58; info&#64;daiict&#46;ac&#46;in
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--  ()  -->
+        <div style="position:relative;">
+            <div class="photo-content">
+                <img src="image/wallpaper/home-page-1.jpg" class="home-page">
+            </div>
+            <div class="details">
+                <div class="intro-1">
+                    WELCOME TO CRYPTOGRAPHY
+                </div>
+                <div class="intro-2">
+                    DISCRETE MATHEMATICS
+                </div>
+                <div class="intro-3">
+                    &#34;Cryptography : The art of securing information through encryption&#44;
+                    safeguarding data from prying eyes&#46;&#34;
+                </div>
+                <div class="intro-4">
+                    Project : Application of Cryptography.
+                    <!-- Project : DES Algorithm. -->
+                </div>
+            </div>
+        </div>
+        <!-- ********************************************************-->
+
+        <div class="A1-introduction-to-DES">
+            <button id="DES-Cryptography" class="Headline-of-DES" onclick="scrollToDiv('DES-Cryptography')">
+                <div style="justify-content: left;
+                        width:fit-content">
+                    DES Algorithm - Cryptography
+                </div>
+            </button>
+            <!-- <div class="intro">
+                    The Data Encryption Standard (DES) is a historically significant encryption algorithm that has shaped the
+                    field of
+                    cryptography. Developed in the 1970s by IBM, DES became the most widely used symmetric key algorithm for
+                    securing
+                    sensitive data. Its strength lies in the use of a 56-bit key and a series of complex operations to convert
+                    plain text
+                    into cipher text.
+                </div> -->
+            <div class="background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/intro-1.jpg">
+                <div class="intro-algorithm-1">
+                    <div class="head-text-algorithm">
+                        <div class="number-symbol"> &#10020; </div>
+                        <div>
+                            Introduction :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The Data Encryption Standard (DES) is a historically significant encryption algorithm
+                                that
+                                has shaped the
+                                field of
+                                cryptography.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Developed in the 1970s by IBM, DES became the most widely used symmetric key
+                                algorithm for
+                                securing
+                                sensitive data.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Its strength lies in the use of a 56-bit key and a series of complex
+                                operations to convert
+                                plain text
+                                into cipher text.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="A1-1-process">
+            <button id="process-id" class="Headline-of-DES" onclick="scrollToDiv('process-id')">
+                <div style="justify-content: left;
+                                    width:fit-content">
+                    Procedure to use the software
+                </div>
+            </button>
+            <div class="background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/w20.jpg">
+                <div class="intro-back-box-algorithm-1 intro-algorithm-1">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol">&#9741; </div>
+                        <div>
+                            Encryption
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Enter your text(DATA) into the designated plainText box.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Input your encryption key into the provided key box.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Click or tap on the "Encryption" button to obtain the corresponding cipher text in
+                                the cipherText box.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/w10.jpg">
+                <div class="intro-back-box-algorithm-1 intro-algorithm-1">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol">&#9741; </div>
+                        <div>
+                            Decryption
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Enter your cipher text into the designated cipherText box.
+                                Input your decryption key into the provided key box.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Click or tap on the "Decryption" button to obtain
+                                the corresponding plain text in the plainText box.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Once decrypted, you will get your data back in its original form.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- <div class="intro">
+            The Data Encryption Standard (DES) is a historically significant encryption algorithm that has shaped the
+            field of
+            cryptography. Developed in the 1970s by IBM, DES became the most widely used symmetric key algorithm for
+            securing
+            sensitive data. Its strength lies in the use of a 56-bit key and a series of complex operations to convert
+            plain text
+            into cipher text.
+        </div> -->
+
+        <div class="A2-encryption-decryption-software">
+            <button id="Encryption-Decryption" class="Headline-of-DES" onclick="scrollToDiv('Encryption-Decryption')">
+                <div style="justify-content: left;
+                                        width:fit-content">
+                    Encryption - Decryption <span style="color:deepskyblue;">(software)</span>
+                    <!-- color:rgb(0, 81, 255); -->
+                </div>
+            </button>
+
+            <div class="converter">
+                <div class="encrypt">
+                    <div class="input-plain-text">
+                        <div class="Text-title">
+                            <span class="Text">plainText</span>
+                        </div>
+                        <div class="input-box">
+                            <textarea placeholder="PlainText" class="js-plainText-input css-plainText-input"
+                                style="font-family: Quicksand,Arial; font-weight: 600;"></textarea>
+                        </div>
+                    </div>
+                    <div class="encrypt-text">
+                        <!-- <p id="errorMessage" style="background-color: lightblue;">1</p> -->
+                        <!-- id="inputTextarea" -->
+                        <textarea placeholder="Key" class="js-key-input css-key-input-text"
+                            style="font-family: Quicksand,Arial; font-weight: 600;" rows="3"></textarea>
+                        <button onclick=" GiveEncryption();" class="css-convert-button">
+                            <div class="encryption">
+                                Encrypt
+                            </div>
+                        </button>
+                    </div>
+                    <div class="output-plain-text">
+                        <div class="Text-title">
+                            <span class="Text">cipherText</span>
+                        </div>
+                        <div class="input-box">
+                            <textarea placeholder="ChiperText" class="js-plainText-output css-plainText-output"
+                                style="font-family: Quicksand,Arial; font-weight: 600;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="decrypt">
+                    <div class="input-cipher-text">
+                        <div class="Text-title">
+                            <span class="Text">cipherText</span>
+                        </div>
+                        <div class="input-box">
+                            <textarea placeholder="ChiperText" class="js-cipherText-input css-cipherText-input"
+                                style="font-family: Quicksand,Arial; font-weight: 600;"></textarea>
+                        </div>
+                    </div>
+                    <div class="decrypt-text">
+                        <textarea placeholder="Key" class="js-key-input-1 css-key-input-text" rows="3"
+                            style="font-family: Quicksand,Arial; font-weight: 600;"></textarea>
+                        <button onclick=" GiveDecryption(); " class="css-convert-button">
+                            <div class="encryption">
+                                Decrypt
+                            </div>
+                        </button>
+                    </div>
+                    <div class="output-cipher-text">
+                        <div class="Text-title">
+                            <span class="Text">plainText</span>
+                        </div>
+                        <div class="input-box">
+                            <textarea placeholder="PlainText" class="js-cipherText-output css-cipherText-output"
+                                style="font-family: Quicksand,Arial; font-weight: 600;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="A2-1-C-plus-plus-Code">
+            <button id="c++code" class="Headline-of-DES" onclick="scrollToDiv('c++code')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    C++ Code of DES Algo.
+                </div>
+            </button>
+            <div class="background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/w6.jpg">
+                <div class="intro-back-box-algorithm-1 intro-algorithm-1">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol">&#10012; </div>
+                        <div>
+                            SOFTWARE
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Below is the link to access our exceptional software/code.
+                                Meticulously developed with expertise and deep knowledge, it
+                                offers a user-friendly interface and powerful functionality.
+                                Click the link to explore its capabilities and experience
+                                the transformative impact it can have on your work.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;justify-content: center;">
+                <button id="cpp-linkButton" class="Headline-of-DES cpp-link-button">
+                    C++ Code
+                </button>
+            </div>
+        </div>
+
+
+        <div class="A3-flow-chart">
+            <button id="Flow-chart-1" class="Headline-of-DES" onclick="scrollToDiv('Flow-chart-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Flow - chart
+                </div>
+            </button>
+            <div class="div-flow-chart">
+                <div class="div-div-flow-chart">
+                    <img class="flow-chart" src="image/wallpaper/Flow-chart.png">
+                </div>
+            </div>
+        </div>
+
+        <div class="A4-encryption-algorithm">
+            <button id="Encryption-Algorithm-1" class="Headline-of-DES" onclick="scrollToDiv('Encryption-Algorithm-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Encryption Algorithm
+                </div>
+            </button>
+
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10102; </div>
+                        <div>
+                            Key Generation:
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                DES uses a 56-bit key, but it actually operates on a 64-bit key,
+                                with 8 bits used for parity
+                                checking.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The key goes through a process called key schedule,
+                                which involves permutation and shifting
+                                operations to generate the subkeys.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The key is subjected to a permutation known as
+                                the "permuted choice 1" (PC-1) to remove the parity
+                                bits and generate a 56-bit key.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white">
+                <div class="intro-algorithm">
+                    <div class="head-text-algorithm">
+                        <div class="number-black-symbol">&#10103;</div>
+                        <div>
+                            Key Schedule:
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The 56-bit key is divided into two halves,
+                                known as C0 and D0, each containing 28 bits.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                A set of 16 subkeys, each consisting of 48 bits,
+                                are derived from these halves.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                In each round, the halves are rotated left by
+                                either one or two positions based on a predefined schedule.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                After the rotations, a permutation called "permuted choice 2"
+                                (PC-2) is applied to generate the 48-bit subkey for that round.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10104; </div>
+                        <div>
+                            Initial Permutation (IP) :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The plaintext to be encrypted is divided into 64-bit blocks.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The initial permutation (IP) rearranges the bits
+                                in the block according to a predefined permutation table.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                This permutation serves to distribute the
+                                bits across the block and provide diffusion.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white">
+                <div class="intro-algorithm">
+                    <div class="head-text-algorithm">
+                        <div class="number-black-symbol"> &#10105; </div>
+                        <div>
+                            Feistel Network:
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                DES employs a Feistel network structure, where each block
+                                is divided into two halves, known as Left (L) and Right (R).
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The Feistel function operates on the Right
+                                half using a 48-bit subkey derived from the key schedule,
+                                producing a 32-bit output.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The output is then XORed with the Left half and the
+                                Right and Left halves are swapped.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10106; </div>
+                        <div>
+                            Feistel Function :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The Feistel function takes a 32-bit input and
+                                performs the following operations:
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                <span class="subtopic">Expansion Permutation (E-box) : </span> Expands the 32-bit
+                                input
+                                to 48 bits by duplicating certain bits.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The expansion is defined by a permutation table.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                <span class="subtopic"> XOR with Subkey : </span> The expanded input is XORed with
+                                the
+                                corresponding
+                                48-bit subkey obtained from the key schedule.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                <span class="subtopic">Substitution Boxes (S-boxes) :</span> The XORed result
+                                is divided into eight 6-bit blocks, each passed
+                                through a different S-box.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Each S-box substitutes the 6 bits with 4 bits
+                                based on a lookup table unique to that S-box.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The substitution is based on the row and column
+                                values derived from the input bits.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                <span class="subtopic">Permutation (P-box) :</span> The 32-bit output of the S-boxes
+                                is rearranged according to a predefined permutation table.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                This permutation helps to further diffuse the bits.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white">
+                <div class="intro-algorithm">
+                    <div class="head-text-algorithm">
+                        <div class="number-black-symbol"> &#10107; </div>
+                        <div>
+                            16 Rounds :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                DES iterates the Feistel network 16 times,
+                                using a different subkey in each round.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The output of the Feistel network in the
+                                16th round is not swapped.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10108; </div>
+                        <div>
+                            Final Permutation (IP-1) :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                After completing the 16 rounds,
+                                a final permutation is applied to the swapped
+                                halves of the last round's output.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The final permutation is the inverse of the
+                                initial permutation, ensuring reversibility.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white">
+                <div class="intro-algorithm">
+                    <div class="head-text-algorithm">
+                        <div class="number-black-symbol"> &#10109; </div>
+                        <div>
+                            Output :
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The final permuted block is the ciphertext,
+                                representing the encrypted form of the plaintext.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="A5-decryption-algorithm">
+            <button id="Decryption-Algorithm-1" class="Headline-of-DES" onclick="scrollToDiv('Decryption-Algorithm-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Decryption Algorithm
+                </div>
+            </button>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10064; </div>
+                        <div>
+                            Reversing the Algo.
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The same process is applied,
+                                but the subkeys are used in reverse order.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The encryption subkeys are used in
+                                decryption by reversing their order.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="background-box-white">
+                <div class="intro-algorithm">
+                    <div class="head-text-algorithm">
+                        <div class="number-black-symbol"> &#10064; </div>
+                        <div>
+                            Decryption
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                DES (Data Encryption Standard) decryption
+                                algorithm takes a 64-bit ciphertext as input.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The ciphertext is first subjected to an
+                                initial permutation (IP) to rearrange its bits.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The permuted ciphertext is divided into two
+                                32-bit halves, left and right.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The decryption process involves performing 16
+                                rounds of operations, where each round involves key mixing,
+                                substitution, and permutation..
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                In each round, the right half is expanded and XORed with a
+                                48-bit round key derived from the original encryption key.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The result is passed through S-boxes for substitution and
+                                then subjected to a permutation (P) before being XORed with
+                                the left half. The process is repeated for 16 rounds in reverse order.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Finally, the left and right halves are swapped, and the resulting
+                                64-bit block undergoes a final permutation (IP-1) to
+                                obtain the plaintext.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="A6-limitation">
+            <button id="limitations-id" class="Headline-of-DES" onclick="scrollToDiv('limitations-id')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Limitation
+                </div>
+            </button>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10070; </div>
+                        <div>
+                            Weaknesses
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The limitations of DES (Data Encryption Standard) include its small key size of 56
+                                bits,
+                                making it vulnerable to
+                                brute-force attacks with modern computing power.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                DES has a fixed block size of 64 bits, limiting its ability to handle
+                                larger data efficiently.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                It lacks built-in support for secure key management and
+                                distribution.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                considered outdated due to advancements in cryptography, and more secure
+                                algorithms like AES(Advanced Encryption Standard)
+                                are recommended for modern applications.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="A6-1-startup">
+            <button id="idea-to-startup-id" class="Headline-of-DES" onclick="scrollToDiv('idea-to-startup-id')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Idea to Startup
+                </div>
+            </button>
+            <div class="background-box-black">
+                <div class="intro-back-box-algorithm">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#10070; </div>
+                        <div>
+                            How can we commercialize our solution and convert it in startup:
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                By leveraging the strong demand for secure data encryption solutions, the software
+                                can
+                                be positioned as a valuable
+                                product in the market.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                With a well-crafted business plan, more improved software and a skilled team,
+                                the startup can help
+                                businesses and people to secure their data.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                By developing a scalable and user-friendly software platform that
+                                prioritizes data security, the startup can meet the needs of various industries.
+                            </div>
+                        </div>
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                Effective marketing and sales
+                                strategies will help reach potential clients and showcase the software's advantages.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="A6-2-video-latex">
+            <button id="video-latex" class="Headline-of-DES" onclick="scrollToDiv('video-latex')">
+                <div style="justify-content: left;
+                                    width:fit-content">
+                    Latex - Video - PPT file
+                </div>
+            </button>
+            <div class="background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/w5-4.jpg">
+                <div class="intro-back-box-algorithm-1 intro-algorithm-1 intro-video-letex-file">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#9741; </div>
+                        <div>
+                            Files
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                The PDF file delves into AES and DES encryption algorithms, covering principles,
+                                processes, and key generation. It
+                                offers practical examples for implementation.
+
+                                The YouTube video visually explains AES and DES, discussing their history, core
+                                concepts, and applications.
+
+                                The PowerPoint presentation provides a concise summary, highlighting key points with
+                                visuals.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex;
+                        justify-content: center;">
+                <button id="latex-linkButton" class="Headline-of-DES cpp-latex-button"
+                    onclick="window.open('pdf/Latex-file.pdf','_blank');">
+                    <div class="latex-box">
+                        <div style="display: flex;
+                                    align-self: center;
+                                    justify-content: center;">
+                            <img class="latex-1" src="image/wallpaper/latex-1.webp">
+                        </div>
+                        <div>
+                            Latex
+                        </div>
+                    </div>
+                </button>
+                <button id="video-linkButton" class="Headline-of-DES cpp-video-button">
+                    <div class="video-box">
+                        <div style="display: flex;
+                                    align-self: center;
+                                    justify-content: center;">
+                            <img class="video-des-1" src="image/wallpaper/video-dse-1.webp">
+                        </div>
+                        <div>
+                            Video
+                        </div>
+                    </div>
+                </button>
+                <button id="ppt-linkButton" class="Headline-of-DES cpp-ppt-button"
+                    onclick="window.open('ppt/DM-Project-PPT.pptx','_blank');">
+                    <div class="ppt-box">
+                        <div style="display: flex;
+                                                    align-self: center;
+                                                    justify-content: center;">
+                            <img class="ppt-1" src="image/wallpaper/ppt-3.jpg">
+                        </div>
+                        <div>
+                            PPT
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <div class="A7-professor-id">
+            <button id="professor-id-1" class="Headline-of-DES css-professor-id"
+                onclick="scrollToDiv('professor-id-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Professors
+                </div>
+            </button>
+            <div class="professor-id-background">
+                <div class="menu-body" onclick="scrollToDiv('professor-id-1')">
+                    prof. Manish Gupta
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('professor-id-1')">
+                    prof. Prosenjit Kundu
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('professor-id-1')">
+                    prof. Manoj Raut
+                </div>
+            </div>
+        </div>
+        <!-- <div class="professor-id-11">
+            <div class="professor-id-11-1">
+                <div>
+                    <img class="manish-gupta-image" src="image/wallpaper/manish-gupta.jpg">
+                </div>
+                <div>12</div>
+            </div>
+            <div class="professor-id-11-1">
+                2
+            </div>
+            <div class="professor-id-11-1">
+                3
+            </div>
+        </div> -->
+        <div class="A8-group-members-id">
+            <button id="Group-members-id-1" class="Headline-of-DES" onclick="scrollToDiv('Group-members-id-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    Group - Members
+                </div>
+            </button>
+            <!-- <div id="Group-members-id" class="menu-icon-1" onclick="scrollToDiv('Group-members-id-1')">
+            Group - Members
+        </div> -->
+            <div class="group-members-background">
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div>
+                        Kashyap Trivedi
+                    </div>
+                    <div class="student-id">
+                        202201191
+                    </div>
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div>
+                        Nitin Kanzariya
+                    </div>
+                    <div class="student-id">
+                        202201181
+                    </div>
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div>
+                        Kartik Baria
+                    </div>
+                    <div class="student-id">
+                        202201202
+                    </div>
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div>
+                        Zeel Boghara
+                    </div>
+                    <div class="student-id">
+                        202201201
+                    </div>
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div>
+                        Het Shah
+                    </div>
+                    <div class="student-id">
+                        202201515
+                    </div>
+                </div>
+                <div class="menu-body" onclick="scrollToDiv('Group-members-id-1')">
+                    <div style="display: flex;">
+                        Manoj Dhundhalva
+                        <div class="website-owner">
+                            created by
+                        </div>
+                    </div>
+                    <div class="student-id">
+                        202201503
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="A9-feedback">
+            <button id="feedback-id-1" class="Headline-of-DES" onclick="scrollToDiv('feedback-id-1')">
+                <div style="justify-content: left;
+                                    width:fit-content">
+                    FeedBack
+                </div>
+            </button>
+            <div class="background-box-white-1 feedback-background-box-white-1">
+                <img class="backgroung-image-1" src="image/wallpaper/w1.png">
+                <div class="intro-back-box-algorithm-1 intro-algorithm-1">
+                    <div class="head-black-text-algorithm">
+                        <div class="number-symbol"> &#9752; </div>
+                        <div>
+                            Review
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                We would greatly appreciate your feedback on our
+                                website based on the content we have provided.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-text-body-algorithm">
+                        <div class="head-text-body-algorithm-1">
+                            <div>&#x2022;</div>
+                            <div class="head-text-body-algorithm-2">
+                                If you found the content informative, engaging, or valuable,
+                                feel free to share
+                                your feedback by clicking the
+                                'Like' button.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-review">
+                <div class="heart-button-feedback">
+                    <button aria-label="heart" data-ico="❤️" style="--hue: 344deg"></button>
+                    <div class="logo-button-feedback">
+                        Magnificent
+                    </div>
+                </div>
+                <div class="thumb-button-feedback">
+                    <button aria-label="like" data-ico="👍" style="--hue: 247deg"></button>
+                    <div class="logo-button-feedback">
+                        Great
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="creater-of-website">
+            <div>
+                For the mobile version, turn on the Desktop mode to get a better experience.
+            </div>
+            <div style="margin-bottom:20px;">
+                This website is created by Manoj Dhundhalva, a student of DAIICT.
+            </div>
+        </div>
+
+        <!-- <div class="A9-feedback">
+            <button id="Group-members-id-1" class="Headline-of-DES feedback"
+                onclick="scrollToDiv('Group-members-id-1')">
+                <div style="justify-content: left;
+                            width:fit-content">
+                    FeedBack
+                </div>
+            </button>
+            <button aria-label="heart" data-ico="❤️" style="--hue: 344deg"></button>
+            <button aria-label="like" data-ico="👍" style="--hue: 247deg"></button>
+        </div> -->
+        <!-- <button aria-label="star" data-ico="⭐" style="--hue: 48deg"></button> -->
+    </div>
+    <script src="script/subString.js"></script>
+    <script src="script/input-output.js"></script>
+    <script>
+        function scrollToDiv(elementId) {
+            var element = document.getElementById(elementId);
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+        const linkButton1 = document.getElementById('cpp-linkButton');
+        linkButton1.addEventListener('click', function () {
+            window.open('https://onlinegdb.com/zz_z2EjGe', '_blank');
+        });
+
+
+        // const linkbutton2 = document.getElementById('latex-linkButton');
+        // linkbutton2.addEventListener('click', function () {
+        //     window.open('https://onlinegdb.com/goZZpHs_Q', '_blank');
+        // });
+
+
+        const LinkButton2 = document.getElementById('video-linkButton');
+        LinkButton2.addEventListener('click', function () {
+            window.open('https://youtu.be/drkR91C9bRo', '_blank');
+        });
+
+        var loader = document.getElementById("preloader");
+        function myFunction() {
+            loader.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
